@@ -1,0 +1,3 @@
+0 stanga-jos
+1 mijloc-mijloc
+2 dreapta-sus
