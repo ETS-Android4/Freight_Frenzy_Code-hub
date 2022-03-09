@@ -169,69 +169,127 @@ public class Autonoma_remote extends LinearOpMode {
         }
     }
 
-//    public void extindere(int level){
-//        if(level==1){
-//            //nivel jos
-//            glisiera.setTargetPosition(1850);
-//            glisiera.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//            glisiera.setPower(1);
-//
-//            extindere.setTargetPosition(1200);
-//            extindere.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//            extindere.setPower(0.8);
-//            telemetry.addData("ajuns la nivel 3","");
-//        }
-//
-//        if(level==2){
-//            //nivel mijloc
-//        }
-//
-//        if(level==3){
-//            //nivel sus
-//        }
-//    }
-//    public void retragere(){
-//        extindere.setTargetPosition(10);
-//        extindere.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        extindere.setPower(0.8);
-//
-//        glisiera.setTargetPosition(10);
-//        glisiera.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        glisiera.setPower(1);
-//    }
-//
-//    public void car_navigation(int direction){
-//        if(distanta.getDistance(DistanceUnit.CM)<=36.5){
-//            stangafata.setPower(0);
-//            dreaptafata.setPower(0);
-//            stangaspate.setPower(0);
-//            dreaptaspate.setPower(0);
-//            carusel(direction);
-//        }
-//
-//    }
-//    public void carusel(int direction){
-//        //partea albastra
-//        carusel.setPosition(direction);
-//        //+ rosu
-//        //- albastru
-//        sleep(1900);
-//        carusel.setPosition(0.5);
-//    }
+    public void extindere(int level){
+        if(level==1){
+            //nivel jos
+            glisiera.setTargetPosition(1850);
+            glisiera.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            glisiera.setPower(1);
+
+            extindere.setTargetPosition(1200);
+            extindere.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            extindere.setPower(0.8);
+            telemetry.addData("ajuns la nivel 3","");
+        }
+
+        if(level==2){
+            //nivel mijloc
+        }
+
+        if(level==3){
+            //nivel sus
+        }
+    }
+    public void retragere(){
+        extindere.setTargetPosition(10);
+        extindere.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        extindere.setPower(0.8);
+
+        glisiera.setTargetPosition(10);
+        glisiera.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        glisiera.setPower(1);
+    }
+
+    public void car_navigation(){
+        if(distanta.getDistance(DistanceUnit.CM)<=36.5){
+            stangafata.setPower(0);
+            dreaptafata.setPower(0);
+            stangaspate.setPower(0);
+            dreaptaspate.setPower(0);
+        }
+
+    }
+    public void carusel(int direction){
+        //partea albastra
+        carusel.setPosition(direction);
+        //+ rosu
+        //- albastru
+        sleep(5500);
+        carusel.setPosition(0.5);
+    }
 
     private void caz_stanga() {
 
-        telemetry.addData("caz","stanga");
+        moveToPosition(-15, 1);
+        turnWithGyro(85,-0.75);
+        moveToPosition(-60, 0.8);
+        car_navigation();
+        carusel(-1);
+
+        strafeToPosition(-100,0.8);
+        moveToPosition(65,0.85);
+        turnWithGyro(180,-1);
+        telemetry.addData("arrived at sh","placing preload");
+
+        // extindere brat
+        strafeToPosition(-70, 0.8);
+        moveToPosition(-250,1);
+        turnWithGyro(180,1);
+        retragere.setPosition(0.7);
+        telemetry.addData("Arrived in warehouse.", "lowered intake");
+
+        requestOpModeStop();
         telemetry.update();
+
     }
 
     private void caz_mijloc() {
         telemetry.addData("caz","mijloc");
+
+        moveToPosition(-15, 1);
+        turnWithGyro(85,-0.75);
+        moveToPosition(-60, 0.8);
+        car_navigation();
+        carusel(-1);
+
+        strafeToPosition(-100,0.8);
+        moveToPosition(60,1);
+        turnWithGyro(180,-1);
+        telemetry.addData("arrived at sh","placing preload");
+
+        // extindere brat
+        strafeToPosition(-70, 0.8);
+        moveToPosition(-250,1);
+        turnWithGyro(180,1);
+        retragere.setPosition(0.7);
+        telemetry.addData("Arrived in warehouse.", "lowered intake");
+
+        requestOpModeStop();
         telemetry.update();
     }
 
     private void caz_dreapta() {
         telemetry.addData("caz","dreapta");
+
+        moveToPosition(-15, 1);
+        turnWithGyro(85,-0.75);
+        moveToPosition(-60, 0.8);
+        car_navigation();
+        carusel(-1);
+
+        strafeToPosition(-100,0.8);
+        moveToPosition(60,1);
+        turnWithGyro(180,-1);
+        telemetry.addData("arrived at sh","placing preload");
+
+        // extindere brat
+        strafeToPosition(-70, 0.8);
+        moveToPosition(-250,1);
+        turnWithGyro(180,1);
+        retragere.setPosition(0.7);
+        telemetry.addData("Arrived in warehouse.", "lowered intake");
+
+        requestOpModeStop();
         telemetry.update();
     }
 
@@ -261,7 +319,7 @@ public class Autonoma_remote extends LinearOpMode {
         }
     }
 // cod nou
-
+    //sall
 
 
     private void DoAutonomusStuff(boolean didFunctionRun){
